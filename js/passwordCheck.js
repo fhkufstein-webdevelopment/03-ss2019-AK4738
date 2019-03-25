@@ -17,21 +17,53 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
 
     //TODO start
     //now for the events which should fire:
+
+
+
     //if we leave the password field (focus is lost) - JavaScript Method "onblur" for an input field in our case the field this.passwordField
     //if we enter the password field (focus is set) - JavaScript Method "onfocus" for an input field - again in our case the field this.passwordField
     //if we are in the password field an enter text - JavaScript Method "onkeyup" or "onkeup" - again in our case the field this.passwordField
     //if we try to click the submit button - JavaScript Method "onclick" - in our case this.passwordSubmitButton
 
     this.passwordField.onblur = function() {
-        //the keyword "this" is always referring to its context.
-        //onblur is an event which happens in "passwordField" -> so the keyword "this" would refer to the passwordField NOT to our class
-        //therefore we previously saved "this" in a variable called "that"
+
+        that.check();
+    };
+    this.passwordField.onfocus = function() {
+
+        that.check();
+    };
+
+    this.passwordField.onkeyup = function() {
+
+        that.check();
+    };
+
+    this.passwordSubmitButton.onclick = function() {
+
         that.check();
     };
 
     //TODO implement the other events in the exact same way!
 
+    this.passwordField.onblur = function() {
 
+        that.check();
+    };
+    this.passwordField.onfocus = function() {
+
+        that.check();
+    };
+
+    this.passwordField.onkeyup = function() {
+
+        that.check();
+    };
+
+    this.passwordSubmitButton.onclick = function() {
+
+        that.check();
+    };
 
 
     //TODO end
@@ -69,16 +101,23 @@ function PasswordChecker(wrapperId, passwordInputFieldId, passwordSubmitButtonId
     This method should return true if the length of passwordField value is greater or equal to this.minLength
      */
     this.checkForLength = function() {
-        //@todo
-        //have a look at javascript string methods and properties
-        return true; //this needs to be replaced!
+        if (this.passwordField.value.length < this.minLength) {
+            return false;
+        }
+        else {
+            return true; //this needs to be replaced!
+        }
     };
 
     /*
     This method returns true if no special Character "!§$_.:,;" is found in this.password - otherwise false
      */
     this.checkForSpecialCharacters = function() {
-        //@todo
+        if (this.passwordField.value.match(/^([a-z0-9]{5,})$/)) {
+            return false;
+        } else {
+            return true;
+        }
         //have a look at javascript string methods and properties
         //you could probably "match" it somehow
         return true; //this needs to be replaced!
